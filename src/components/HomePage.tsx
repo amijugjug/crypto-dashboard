@@ -5,7 +5,7 @@ import { Cryptocurrency } from "@/interfaces/Crypto";
 import Link from "next/link";
 import WebSocket from "isomorphic-ws";
 import FavoriteButton from "@/components/FavoriteButton";
-import HomePageSkeleton from "@/components/Skeleton/HomePageSkeleton"; // Import the Skeleton component
+import HomePageSkeleton from "@/components/Skeleton/HomePageSkeleton";
 
 const HomePage = ({ cryptoList }: { cryptoList: Cryptocurrency[] }) => {
   const ws = useRef<WebSocket | null>(null);
@@ -32,7 +32,7 @@ const HomePage = ({ cryptoList }: { cryptoList: Cryptocurrency[] }) => {
   }, [cryptoList]);
 
   useEffect(() => {
-    ws.current = new WebSocket(process.env.NEXT_PUBLIC_WS_URL);
+    ws.current = new WebSocket(`${process.env.NEXT_PUBLIC_WS_URL}assets=ALL`);
     ws.current.onmessage = (event: any) => {
       const data = JSON.parse(event.data);
       setCryptocurrencies((prevCryptos) =>
@@ -48,10 +48,13 @@ const HomePage = ({ cryptoList }: { cryptoList: Cryptocurrency[] }) => {
   }, []);
 
   const sortedCryptocurrencies = [...cryptocurrencies].sort((a, b) => {
-    if (a[sortConfig.key] < b[sortConfig.key]) {
+    type SortableKeys = keyof Cryptocurrency;
+    const key = sortConfig.key as SortableKeys;
+
+    if (a[key] < b[key]) {
       return sortConfig.direction === "ascending" ? -1 : 1;
     }
-    if (a[sortConfig.key] > b[sortConfig.key]) {
+    if (a[key] > b[key]) {
       return sortConfig.direction === "ascending" ? 1 : -1;
     }
     return 0;

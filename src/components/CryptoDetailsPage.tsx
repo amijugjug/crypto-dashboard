@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { Cryptocurrency } from "@/interfaces/Crypto";
 import { Line } from "react-chartjs-2";
+import WebSocket from "isomorphic-ws";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -28,12 +29,16 @@ ChartJS.register(
 );
 
 const CryptoDetailsPage = ({
+  id,
   cryptoData,
   cryptoHistory,
 }: {
+  id: string;
   cryptoData: Cryptocurrency;
   cryptoHistory: any;
 }) => {
+  const ws = useRef<WebSocket | null>(null);
+
   const [crypto, setCrypto] = useState<Cryptocurrency | null>(null);
   const [isLoadingCrypto, setIsLoadingCrypto] = useState(true);
   const [isLoadingHistory, setIsLoadingHistory] = useState(true);
@@ -41,9 +46,28 @@ const CryptoDetailsPage = ({
   useEffect(() => {
     setCrypto(cryptoData);
     setIsLoadingCrypto(false);
+  }, [cryptoData]);
 
+  useEffect(() => {
     setIsLoadingHistory(false);
-  }, []);
+  }, [cryptoHistory]);
+
+  useEffect(() => {
+    ws.current = new WebSocket(`${process.env.NEXT_PUBLIC_WS_URL}assets=${id}`);
+
+    ws.current.onmessage = (event: any) => {
+      const data = JSON.parse(event.data);
+      if (data[id]) {
+        setCrypto((prevCrypto) =>
+          prevCrypto ? { ...prevCrypto, priceUsd: data[id] } : prevCrypto
+        );
+      }
+    };
+
+    return () => {
+      ws.current?.close();
+    };
+  }, [id]);
 
   return (
     <div className="container mx-auto p-4">

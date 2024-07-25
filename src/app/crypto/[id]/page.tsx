@@ -44,7 +44,13 @@ const page = async ({ params }: { params: { id: string } }) => {
     ],
   };
 
-  return <CryptoDetailsPage cryptoData={cryptoData} cryptoHistory={data} />;
+  return (
+    <CryptoDetailsPage
+      id={params.id}
+      cryptoData={cryptoData}
+      cryptoHistory={data}
+    />
+  );
 };
 
 export default page;
