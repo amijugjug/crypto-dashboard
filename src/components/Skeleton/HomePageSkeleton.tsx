@@ -1,18 +1,44 @@
 const HomePageSkeleton = () => {
   return (
     <div className="animate-pulse">
-      <div className="flex flex-col space-y-4">
-        {[...Array(10)].map((_, index) => (
+      <table className="min-w-full bg-white border border-gray-300">
+        <thead>
+          <tr>
+            <th className="px-4 py-2 border-b bg-gray-300 h-6 rounded"></th>
+            <th className="px-4 py-2 border-b bg-gray-300 h-6 rounded"></th>
+            <th className="px-4 py-2 border-b bg-gray-300 h-6 rounded"></th>
+            <th className="px-4 py-2 border-b bg-gray-300 h-6 rounded"></th>
+            <th className="px-4 py-2 border-b bg-gray-300 h-6 rounded"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {Array.from({ length: 10 }).map((_, index) => (
+            <tr key={index} className="hover:bg-gray-100">
+              <td className="px-4 py-2 border-b">
+                <div className="bg-gray-300 h-6 rounded"></div>
+              </td>
+              <td className="px-4 py-2 border-b">
+                <div className="bg-gray-300 h-6 rounded"></div>
+              </td>
+              <td className="px-4 py-2 border-b">
+                <div className="bg-gray-300 h-6 rounded"></div>
+              </td>
+              <td className="px-4 py-2 border-b">
+                <div className="bg-gray-300 h-6 rounded"></div>
+              </td>
+              <td className="px-4 py-2 border-b">
+                <div className="bg-gray-300 h-6 rounded"></div>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <div className="mt-4 flex justify-center space-x-2">
+        {Array.from({ length: 3 }).map((_, index) => (
           <div
             key={index}
-            className="flex items-center space-x-4 p-4 border-b border-gray-300"
-          >
-            <div className="w-24 h-4 bg-gray-200 rounded"></div>
-            <div className="w-1/4 h-4 bg-gray-200 rounded"></div>
-            <div className="w-1/4 h-4 bg-gray-200 rounded"></div>
-            <div className="w-1/4 h-4 bg-gray-200 rounded"></div>
-            <div className="w-1/4 h-4 bg-gray-200 rounded"></div>
-          </div>
+            className="px-3 py-1 bg-gray-300 h-6 w-8 rounded"
+          ></div>
         ))}
       </div>
     </div>

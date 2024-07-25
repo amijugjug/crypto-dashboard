@@ -105,8 +105,10 @@ const HomePage = ({ cryptoList }: { cryptoList: Cryptocurrency[] }) => {
             <tbody>
               {paginatedCryptocurrencies.map((crypto) => (
                 <tr key={crypto.id} className="hover:bg-gray-100">
-                  <td className="px-4 py-2 border-b">{crypto.symbol}</td>
-                  <td className="px-4 py-2 border-b">
+                  <td className="px-4 py-2 border-b text-center">
+                    {crypto.symbol}
+                  </td>
+                  <td className="px-4 py-2 border-b text-center">
                     <Link
                       href={`/crypto/${crypto.id}`}
                       className="text-blue-500 hover:underline"
@@ -114,13 +116,13 @@ const HomePage = ({ cryptoList }: { cryptoList: Cryptocurrency[] }) => {
                       {crypto.name}
                     </Link>
                   </td>
-                  <td className="px-4 py-2 border-b">
+                  <td className="px-4 py-2 border-b text-center">
                     ${parseFloat(crypto.priceUsd).toFixed(2)}
                   </td>
-                  <td className="px-4 py-2 border-b">
+                  <td className="px-4 py-2 border-b text-center">
                     ${parseFloat(crypto.marketCapUsd).toFixed(2)}
                   </td>
-                  <td className="px-4 py-2 border-b">
+                  <td className="px-4 py-2 border-b text-center">
                     <FavoriteButton id={crypto.id} />
                   </td>
                 </tr>
