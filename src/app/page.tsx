@@ -4,9 +4,12 @@ import { useState, useEffect, useRef } from "react";
 import { getCryptocurrencies } from "@/services/coinCap.services";
 import { Cryptocurrency } from "@/interfaces/Crypto";
 import Link from "next/link";
+import WebSocket from "isomorphic-ws";
 import FavoriteButton from "@/components/FavoriteButton";
 
 const HomePage = () => {
+  const ws = useRef<WebSocket | null>(null);
+
   const [cryptocurrencies, setCryptocurrencies] = useState<Cryptocurrency[]>(
     []
   );
@@ -26,6 +29,22 @@ const HomePage = () => {
       setCryptocurrencies(data);
     };
     fetchData();
+  }, []);
+
+  useEffect(() => {
+    ws.current = new WebSocket(process.env.NEXT_PUBLIC_WS_URL);
+    ws.current.onmessage = (event: any) => {
+      const data = JSON.parse(event.data);
+      setCryptocurrencies((prevCryptos) =>
+        prevCryptos.map((crypto) =>
+          data[crypto.id] ? { ...crypto, priceUsd: data[crypto.id] } : crypto
+        )
+      );
+    };
+
+    return () => {
+      ws.current?.close();
+    };
   }, []);
 
   const sortedCryptocurrencies = [...cryptocurrencies].sort((a, b) => {
