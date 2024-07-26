@@ -1,5 +1,3 @@
-Here's a README template for your cryptocurrency dashboard project:
-
 # Crypto Dashboard
 
 ## Walkthrough of this Application
