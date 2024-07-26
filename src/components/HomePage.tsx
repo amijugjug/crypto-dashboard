@@ -2,10 +2,10 @@
 
 import { useState, useEffect, useRef } from "react";
 import { Cryptocurrency } from "@/interfaces/Crypto";
-import Link from "next/link";
 import WebSocket from "isomorphic-ws";
-import FavoriteButton from "@/components/FavoriteButton";
 import HomePageSkeleton from "@/components/Skeleton/HomePageSkeleton";
+import CryptoRow from "@/components/CryptoRow";
+import CryptoCarousel from "@/components/CryptoCarousel";
 
 const HomePage = ({ cryptoList }: { cryptoList: Cryptocurrency[] }) => {
   const ws = useRef<WebSocket | null>(null);
@@ -21,7 +21,7 @@ const HomePage = ({ cryptoList }: { cryptoList: Cryptocurrency[] }) => {
     key: "name",
     direction: "ascending",
   });
-  const [isLoading, setIsLoading] = useState(true); // State to track loading status
+  const [isLoading, setIsLoading] = useState(true);
   const itemsPerPage = 10;
 
   useEffect(() => {
@@ -77,11 +77,12 @@ const HomePage = ({ cryptoList }: { cryptoList: Cryptocurrency[] }) => {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Cryptocurrencies</h1>
+      <CryptoCarousel cryptos={cryptoList.slice(0, 6)} />
       {isLoading ? (
         <HomePageSkeleton />
       ) : (
         <>
+          <h1 className="text-2xl font-bold mb-4">Cryptocurrencies</h1>
           <table className="min-w-full bg-white border border-gray-300">
             <thead>
               <tr>
@@ -104,28 +105,7 @@ const HomePage = ({ cryptoList }: { cryptoList: Cryptocurrency[] }) => {
             </thead>
             <tbody>
               {paginatedCryptocurrencies.map((crypto) => (
-                <tr key={crypto.id} className="hover:bg-gray-100">
-                  <td className="px-4 py-2 border-b text-center">
-                    {crypto.symbol}
-                  </td>
-                  <td className="px-4 py-2 border-b text-center">
-                    <Link
-                      href={`/crypto/${crypto.id}`}
-                      className="text-blue-500 hover:underline"
-                    >
-                      {crypto.name}
-                    </Link>
-                  </td>
-                  <td className="px-4 py-2 border-b text-center">
-                    ${parseFloat(crypto.priceUsd).toFixed(2)}
-                  </td>
-                  <td className="px-4 py-2 border-b text-center">
-                    ${parseFloat(crypto.marketCapUsd).toFixed(2)}
-                  </td>
-                  <td className="px-4 py-2 border-b text-center">
-                    <FavoriteButton id={crypto.id} />
-                  </td>
-                </tr>
+                <CryptoRow key={crypto.id} crypto={crypto} />
               ))}
             </tbody>
           </table>
