@@ -1,3 +1,5 @@
+Here's a README template for your cryptocurrency dashboard project:
+
 # Crypto Dashboard
 
 ## Walkthrough of this Application
@@ -7,6 +9,7 @@ The Crypto Dashboard is a web application that provides real-time information ab
 ### Features
 
 - **Responsive Navbar**: A navigation bar at the top that includes a search field for filtering cryptocurrencies and a theme switcher for light and dark modes.
+- **Carousel**: A carousel of some famous cryptocurrencies displaying their current prices.
 - **Cryptocurrency List**: A table displaying a list of cryptocurrencies with details such as symbol, name, price, market cap, and a favorites button.
 - **Crypto Details Page**: Clickable links on cryptocurrency names lead to a dedicated details page, displaying additional information and price history.
 - **Real-Time Updates**: Prices are updated in real-time using WebSocket connections.
@@ -42,13 +45,7 @@ The Crypto Dashboard is a web application that provides real-time information ab
 
 3. **Set Up Environment Variables**
 
-   Create a `.env.local` file in the root of your project and add the following variables:
-
-   ```plaintext
-   NEXT_PUBLIC_WS_URL=your_websocket_url
-   ```
-
-   Replace `your_websocket_url` with the actual WebSocket URL for fetching cryptocurrency data.
+    Create a `.env` file in the root of your project and copy .env.sample file content over there.
 
 4. **Run the Development Server**
 
