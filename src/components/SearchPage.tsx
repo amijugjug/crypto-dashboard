@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { Cryptocurrency } from "@/interfaces/Crypto";
 import Link from "next/link";
-import FavoriteButton from "@/components/FavoriteButton";
+import CryptoRow from "./CryptoRow";
 
 const SearchPage = ({
   cryptoList,
@@ -37,26 +37,7 @@ const SearchPage = ({
           </thead>
           <tbody>
             {results.map((crypto) => (
-              <tr key={crypto.id} className="hover:bg-gray-100">
-                <td className="px-4 py-2 border-b">{crypto.symbol}</td>
-                <td className="px-4 py-2 border-b">
-                  <Link
-                    href={`/crypto/${crypto.id}`}
-                    className="text-blue-500 hover:underline"
-                  >
-                    {crypto.name}
-                  </Link>
-                </td>
-                <td className="px-4 py-2 border-b">
-                  ${parseFloat(crypto.priceUsd).toFixed(2)}
-                </td>
-                <td className="px-4 py-2 border-b">
-                  ${parseFloat(crypto.marketCapUsd).toFixed(2)}
-                </td>
-                <td className="px-4 py-2 border-b">
-                  <FavoriteButton id={crypto.id} />
-                </td>
-              </tr>
+              <CryptoRow crypto={crypto} key={crypto.id} />
             ))}
           </tbody>
         </table>
