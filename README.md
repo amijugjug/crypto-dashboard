@@ -1,36 +1,76 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Crypto Dashboard
 
-## Getting Started
+## Walkthrough of this Application
 
-First, run the development server:
+The Crypto Dashboard is a web application that provides real-time information about various cryptocurrencies. Users can view a list of cryptocurrencies, see detailed information about each one, and monitor price changes in real-time. The application features a search function, enabling users to quickly find specific cryptocurrencies. 
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+### Features
+
+- **Responsive Navbar**: A navigation bar at the top that includes a search field for filtering cryptocurrencies and a theme switcher for light and dark modes.
+- **Cryptocurrency List**: A table displaying a list of cryptocurrencies with details such as symbol, name, price, market cap, and a favorites button.
+- **Crypto Details Page**: Clickable links on cryptocurrency names lead to a dedicated details page, displaying additional information and price history.
+- **Real-Time Updates**: Prices are updated in real-time using WebSocket connections.
+- **Theme Support**: Users can switch between light and dark modes, with a smooth transition and persistent theme storage.
+- **Footer**: A persistent footer displayed on all pages.
+
+## Tech Stack Used
+
+- **Next.js 14**: A React framework for building server-side rendered and statically generated web applications.
+- **React**: A JavaScript library for building user interfaces.
+- **TypeScript**: A superset of JavaScript that adds static types.
+- **Tailwind CSS**: A utility-first CSS framework for styling components.
+- **Chart.js**: A JavaScript library for creating charts, used for displaying price history.
+- **WebSocket**: For real-time communication and updates on cryptocurrency prices.
+- **Local Storage**: To persist user preferences such as theme selection.
+
+## Steps to Run this Application
+
+1. **Clone the Repository**
+
+   ```bash
+   git clone https://github.com/your-username/crypto-dashboard.git
+   cd crypto-dashboard
+   ```
+
+2. **Install Dependencies**
+
+   Make sure you have Node.js and npm installed. Then run:
+
+   ```bash
+   npm install
+   ```
+
+3. **Set Up Environment Variables**
+
+   Create a `.env.local` file in the root of your project and add the following variables:
+
+   ```plaintext
+   NEXT_PUBLIC_WS_URL=your_websocket_url
+   ```
+
+   Replace `your_websocket_url` with the actual WebSocket URL for fetching cryptocurrency data.
+
+4. **Run the Development Server**
+
+   Start the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+   Your application should be running at [http://localhost:3000](http://localhost:3000).
+
+5. **Visit the Application**
+
+   Open your browser and navigate to [http://localhost:3000](http://localhost:3000) to view the Crypto Dashboard.
+
+## Contributing
+
+Contributions are welcome! If you have suggestions or improvements, please open an issue or submit a pull request.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Feel free to modify any sections to better fit your project and its specifics!
