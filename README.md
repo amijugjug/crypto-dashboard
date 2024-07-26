@@ -45,7 +45,7 @@ The Crypto Dashboard is a web application that provides real-time information ab
 
 3. **Set Up Environment Variables**
 
-    Create a `.env` file in the root of your project and copy .env.sample file content over there.
+    Create a `.env` file in the root of your project and copy `.env.sample` file content over there.
 
 4. **Run the Development Server**
 
