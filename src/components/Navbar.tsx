@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import debounce from "lodash.debounce";
+import ThemeSwitch from "./ThemeSwitch";
 
 const Navbar = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -33,11 +34,12 @@ const Navbar = () => {
         </div>
         <input
           type="text"
-          placeholder="Search..."
+          placeholder="Search your crypto here..."
           value={searchTerm}
           onChange={handleChange}
-          className="px-4 py-2 rounded bg-white text-black"
+          className="px-4 py-2 rounded bg-white text-black min-w-[40rem]"
         />
+        <ThemeSwitch />
       </div>
     </nav>
   );

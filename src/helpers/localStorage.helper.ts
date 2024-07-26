@@ -1,9 +1,16 @@
 export const getLocalStorageItem = (key: string) => {
-  if (!localStorage.getItem(key)) {
+  const item = localStorage.getItem(key);
+
+  if (!item) {
     console.warn(`Key "${key}" not found in local storage.`);
     return null;
   }
-  return JSON.parse(localStorage.getItem(key) || "");
+
+  try {
+    return JSON.parse(item);
+  } catch {
+    return item;
+  }
 };
 
 export const setLocalStorageItem = (key: string, value: any) => {

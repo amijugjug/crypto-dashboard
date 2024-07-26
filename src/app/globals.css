@@ -4,3 +4,64 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --bg-light: linear-gradient(135deg, #ffffff 0%, #abbaab 100%);
+  --bg-dark: linear-gradient(135deg, #114357 0%, #f29492 100%);
+}
+
+html {
+  transition: background-color 0.5s ease;
+}
+
+body.light {
+  background: var(--bg-light);
+  transition: background 0.3s ease-in-out;
+}
+
+body.dark {
+  background: var(--bg-dark);
+  transition: background 0.3s ease-in-out;
+}
+
+.dark .bg-gradient-to-r {
+  background: linear-gradient(to right, #434343 0%, black 100%);
+}
+
+.dark .bg-white {
+  background-color: #2c3e50;
+}
+
+/* .dark .text-gray-500 {
+  color: #b2bec3;
+}
+.dark .text-gray-700 {
+  color: #b2bec3;
+} */
+
+.dark {
+  span,
+  h1,
+  h2,
+  th,
+  td {
+    color: #bdc3c7;
+  }
+  .text-gray-500 {
+    color: #bdc3c7;
+  }
+  .text-gray-700 {
+    color: #bdc3c7;
+  }
+  button {
+    color: #000;
+  }
+}
+
+.light span,
+h1,
+h2,
+th,
+td {
+  color: #000000;
+}

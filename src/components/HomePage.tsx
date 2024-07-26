@@ -117,7 +117,7 @@ const HomePage = ({ cryptoList }: { cryptoList: Cryptocurrency[] }) => {
                 className={`px-3 py-1 border rounded ${
                   currentPage === index + 1
                     ? "bg-blue-500 text-white"
-                    : "bg-white text-black"
+                    : "bg-gray-200 text-black"
                 }`}
               >
                 {index + 1}
