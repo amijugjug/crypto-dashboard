@@ -80,6 +80,11 @@ The Crypto Dashboard is a web application that provides real-time information ab
     
     ![alt FooterShow](https://res.cloudinary.com/sriprakhar2/image/upload/v1722055931/crypto-dashboard/Screenshot_2024-07-27_at_10.20.56_AM_rtxvse.png)
 
+## PoweredBy
+
+This project is powered by CoinCap api.
+CoinCap is a useful tool for real-time pricing and market activity for over 1,000 cryptocurrencies. By collecting exchange data from thousands of markets, CoinCap is able to offer transparent and accurate data on asset price and availability.
+
 
 ## Contributing
 
